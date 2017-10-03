@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker{
       image 'maven:alpine'
-      args '--network=ci_attachable -v /maven:/maven'
+      args '--network=ci_attachable'
     }
   }
   options {
