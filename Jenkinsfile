@@ -17,14 +17,24 @@ pipeline {
   stages {
     stage("build") {
       steps {
-        sh 'mvn -Dmaven.test.failure.ignore=true --settings /maven/settings-docker.xml clean package'
+        sh 'mvn -DskipTests=true --settings /maven/settings-docker.xml clean package'
       }
     }
+      stage("Test") {
+        steps {
+          sh 'mvn -Dmaven.test.failure.ignore=true --settings /maven/settings-docker.xml test'
+        }
+      }
     stage('Quality Gates') {
       steps {
         sh 'mvn --settings /maven/settings-docker.xml sonar:sonar'
       }
     }
+      stage("Deploy to Nexus") {
+        steps {
+          sh 'mvn -DskipTests=true --settings /maven/settings-docker.xml deploy'
+        }
+      }
     stage('Deploy - Dev') {
       steps {
         sh 'echo deploying to dev...'
