@@ -17,10 +17,10 @@ Vagrant.configure("2") do |config|
 			v.customize ["modifyvm", :id, "--name", "node1"]
 		end
     node1.vm.provision "docker" do |d|
-      d.run "compose",
-        image: "docker/compose:1.17.1",
-        cmd: "up",
-        args: "-it -v /var/run/docker.sock:/var/run/docker.sock -v /vagrant:/compose -w /compose"
+      # d.run "compose",
+      #   image: "docker/compose:1.17.1",
+      #   cmd: "up",
+      #   args: "-it -v /var/run/docker.sock:/var/run/docker.sock -v /vagrant:/compose -w /compose"
       d.run "sonarqube",
         image: "sonarqube:alpine",
         args: "-it -p 9000:9000 -p 9092:9092"
