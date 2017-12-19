@@ -179,6 +179,18 @@
       <url>http://www.apache.org/licenses/LICENSE-2.0</url>
     </license>
   </licenses>
+  <distributionManagement>
+    <repository>
+      <id>maven-releases</id>
+      <name>Release Repository</name>
+      <url>http://nexus:8081/nexus/repository/maven-releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>maven-snapshots</id>
+      <name>Snapshots Repository</name>
+      <url>http://nexus:8081/nexus/repository/maven-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
   <!--  SonarQube analysis -->
   <profiles>
     <profile>
